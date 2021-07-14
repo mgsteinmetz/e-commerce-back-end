@@ -49,14 +49,19 @@ router.get('/:id', (req, res) => {
         ],
       },
     });
+    if (!oneCategory) { 
+      res.status(404).json({ message: 'No Catergory found using this id' });
+      return;
+    };
     res.status(200).json(oneCategory);
   } catch (err) {
-    res.status(200).json(err);
+    res.status(500).json(err);
   }
 });
   
 router.post('/', (req, res) => {
   // create a new category
+
 });
 
 router.put('/:id', (req, res) => {

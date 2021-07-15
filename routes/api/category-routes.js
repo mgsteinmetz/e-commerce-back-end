@@ -50,7 +50,7 @@ router.get('/:id', (req, res) => {
       },
     });
     if (!oneCategory) { 
-      res.status(404).json({ message: 'No Catergory found using this id' });
+      res.status(404).json({ message: 'No Catergory found using this id.' });
       return;
     };
     res.status(200).json(oneCategory);
@@ -62,7 +62,7 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
   // create a new category
   try {
-    const newCategory = await Category.create({
+    const newCategory = await Category.create( {
       product_id: req.body.product_id
     });
     res.status(200).json(newCategory);
@@ -73,10 +73,30 @@ router.post('/', (req, res) => {
 
 router.put('/:id', (req, res) => {
   // update a category by its `id` value
+  try {
+    const updateCategory = await Category.put( {
+      product_id: req.body.product_id
+    });
+    res.status(200).json(updateCategory);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 router.delete('/:id', (req, res) => {
   // delete a category by its `id` value
+  try {
+    const deleteCategory = await Category.destroy( {
+      where: { id: req.params.id }
+    });
+    if (!deleteCategory) {
+      res.status(404).json({ message: 'There is no Category using this id.' });
+      return;
+    }
+    res.status(200).json(deleteCategory);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 module.exports = router;

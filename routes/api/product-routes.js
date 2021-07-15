@@ -11,8 +11,9 @@ router.get('/', (req, res) => {
     const productData = await Product.findAll( {
       include: [
         {
-          model: Product,
-          model: Category
+          model: Category,
+          model: Tag,
+          model: ProductTag
         }
       ],
       attributes: {
@@ -34,6 +35,32 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   // find a single product by its `id`
   // be sure to include its associated Category and Tag data
+  try {
+    const oneProduct = await Product.findByPk(req.params.id, {
+      include: [
+        {
+          model: Category,
+          model: Tag,
+          model: ProductTag
+        }
+      ],
+      attributes: {
+        include: [
+          [
+            sequelize.literal(`SELECT COUNT(*) FROM category AND product = id`),
+            'product',
+          ],
+        ],
+      },
+    });
+    if(!oneProduct) {
+      res.status(404).json({ message: 'There is no product using this id.' });
+      return;
+    }
+    res.status(200).json(oneProduct);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 // create new product

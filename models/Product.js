@@ -40,7 +40,7 @@ Product.init(
       allowNull: false,
       references: {
         model: 'category',
-        id: category.id
+        id: 'category.id'
       },
     },
   },

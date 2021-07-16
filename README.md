@@ -16,7 +16,8 @@ This is an e-commerce back end application.
 To install, travel to my github, and use my code! 
 
 ## Usage 
-To USE my code, all you have to do is type 'node server.js' into the integrated terminal!!
+To USE my code, all you have to do is type 'npm run seeds' into the integrated terminal to seed your database with the table data!!
+Then you can type 'npm start' and it will start listening on the desired server!
 
 ## License
 My project uses the MIT License

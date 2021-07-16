@@ -1,8 +1,12 @@
 -- DROP DATABASE
 DROP DATABASE IF EXISTS ecommerce_db;
 
+-- DROP DATABASE
+DROP DATABASE IF EXISTS ecommerce_db;
+
 -- CREATE DATABASE
 CREATE DATABASE ecommerce_db;
+USE ecommerce_db;
 
 -- ADDING TABLES
 CREATE TABLE Category (
@@ -15,21 +19,8 @@ CREATE TABLE Product (
     id INTEGER NOT NULL AUTO_INCREMENT,
     product_name VARCHAR(30) NOT NULL,
     price DECIMAL NOT NULL,
-        validate: {
-            DECIMAL = true;
-        },
-    stock INTEGER NOT NULL,
-        default: {
-            value: 10;
-        },
-        validate: {
-            INTEGER = true;
-        },
+    stock INTEGER NOT NULL DEFAULT(10),
     category_id INTEGER,
-        references: {
-            model: Category,
-            id: category_id
-        },
     PRIMARY KEY (id)
 );
 
@@ -42,14 +33,6 @@ CREATE TABLE Tag (
 CREATE TABLE ProductTag (
     id INTEGER NOT NULL AUTO_INCREMENT,
     product_id INTEGER,
-        references: {
-            model: Product,
-            id: product_id
-        },
     tag_id INTEGER,
-        references: {
-            model: Tag,
-            id: tag_id
-        },
     PRIMARY KEY (id)
 );

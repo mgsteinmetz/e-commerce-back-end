@@ -13,7 +13,7 @@
 ## Description
 This is an e-commerce back end application. 
 
-[CLICK HERE](https://drive.google.com/file/d/13QFZsdtYbvGQ4C3aAnJZXB5EICgpptGz/view) to view a walkthrough video of my application!
+[CLICK HERE](https://drive.google.com/file/d/1TWSxXvF8ciJi7Adws5rjp8nwNsNc_fT-/view) to view a walkthrough video of my application!
 
 ## Installation
 To install, travel to my github, and use my code! 

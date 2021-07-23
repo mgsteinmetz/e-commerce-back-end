@@ -14,15 +14,8 @@ router.get('/', async (req, res) => {
           model: ProductTag
         }
       ],
-      attributes: {
-        include: [
-          [
-            sequelize.literal(`SELECT COUNT(*) FROM category AND product = id`),
-            'product',
-          ],
-        ],
-      },
     });
+    res.status(200).json(tagData);
   } catch (err) {
     res.status(500).json(err);
   }
